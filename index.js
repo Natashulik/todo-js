@@ -63,12 +63,17 @@ function addTask(title, description) {
 
   //вешаем слушателя на кнопку удаления
   deleteButton.addEventListener("click", function () {
+    const audio1 = new Audio("./assets/delete.mp3");
+    audio1.play();
     li.remove();
   });
 
   taskList.appendChild(li);
 
   filter();
+
+  const audio2 = new Audio("./assets/add.mp3");
+  audio2.play();
 }
 
 // вешаем слушателя на кнопку "Добавить" в модальном окне, кот. добавляет задачу и  скрывает модальное окно
