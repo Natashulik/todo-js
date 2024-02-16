@@ -11,38 +11,48 @@ closeButton.addEventListener("click", function () {
   modal.classList.remove("visible");
 });
 
-// добавление и удаление задачи
-const addButton = document.querySelector("#add-task");
+// функция, которая создает задачу на основе введенного заголовка и описания
 const taskList = document.querySelector("#task-list");
 
 function addTask(title, description) {
   const li = document.createElement("li");
+  li.classList.add("task-list__item");
 
+  const taskHeader = document.createElement("div");
+  taskHeader.classList.add("task-header");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add("checkbox");
+
+  const taskTitle = document.createElement("p");
+  taskTitle.classList.add("task-title");
+  taskTitle.textContent = title;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button", "button");
+  deleteButton.textContent = "✖";
+
+  taskHeader.appendChild(checkbox);
+  taskHeader.appendChild(taskTitle);
+  taskHeader.appendChild(deleteButton);
+
+  li.appendChild(taskHeader);
+
+  // добавляем описание задачи, если оно есть
   if (description.trim() !== "") {
-    li.innerHTML = `<div class="task-list__item">
-        <div class="task-header"> 
-        <input type="checkbox" class="checkbox">
-          <p class="task-title">${title}</p>
-          <button class="delete-button button">✖</button>
-        </div>   
-        <div class="description">
-          <p class="description__content">${description}</p>
-        </div>        
-      </div>`;
-  } else {
-    li.innerHTML = `<div class="task-list__item">
-    <div class="task-header"> 
-    <input type="checkbox" class="checkbox">
-      <p class="task-title">${title}</p>
-      <button class="delete-button button">✖</button>
-    </div>          
-  </div>`;
+    const descriptionContainer = document.createElement("div");
+    descriptionContainer.classList.add("description");
+
+    const descriptionContent = document.createElement("p");
+    descriptionContent.classList.add("description__content");
+    descriptionContent.textContent = description;
+
+    descriptionContainer.appendChild(descriptionContent);
+    li.appendChild(descriptionContainer);
   }
 
-  const checkbox = li.querySelector(".checkbox");
-  const taskTitle = li.querySelector(".task-title");
-  const deleteButton = li.querySelector(".delete-button");
-
+  //вешаем слушателя на чекбокс
   checkbox.addEventListener("change", function () {
     if (checkbox.checked) {
       taskTitle.style.textDecoration = "line-through";
@@ -51,12 +61,16 @@ function addTask(title, description) {
     }
   });
 
+  //вешаем слушателя на кнопку удаления
   deleteButton.addEventListener("click", function () {
     li.remove();
   });
 
   taskList.appendChild(li);
 }
+
+// вешаем слушателя на кнопку "Добавить" в модальном окне, кот. добавляет задачу и  скрывает модальное окно
+const addButton = document.querySelector("#add-task");
 
 addButton.addEventListener("click", function () {
   const title = document.querySelector("#task-title").value;
@@ -69,5 +83,3 @@ addButton.addEventListener("click", function () {
     document.querySelector("#task-description").value = "";
   }
 });
-
-// удаление задачи

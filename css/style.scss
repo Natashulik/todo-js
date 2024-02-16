@@ -179,6 +179,10 @@ body {
   min-height: 40px;
 }
 
+.task-title {
+  flex-wrap: wrap;
+}
+
 .checkbox {
   width: 15px;
   height: 16px;
@@ -196,11 +200,6 @@ body {
   background-color: $color-addhover;
   border-radius: 10px;
   flex-wrap: wrap;
-}
-
-.description__title {
-  color: $color-border;
-  font-size: 12px;
 }
 
 .description__content {
