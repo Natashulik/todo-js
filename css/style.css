@@ -28,6 +28,11 @@ body {
   margin: 20px auto;
   text-align: center;
 }
+@media (max-width: 320px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
 
 .modal {
   display: none;
@@ -44,7 +49,7 @@ body {
   display: block;
 }
 
-.modal__content {
+.modal .modal__content {
   width: 400px;
   position: absolute;
   top: 110px;
@@ -55,14 +60,24 @@ body {
   border-radius: 3px;
   padding: 25px;
   align-self: center;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(10, 7, 7, 0.3);
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+@media (max-width: 400px) {
+  .modal .modal__content {
+    width: 100%;
+  }
+}
 
 .modal__title {
   text-align: center;
+}
+@media (max-width: 320px) {
+  .modal__title {
+    font-size: 1.2rem;
+  }
 }
 
 .modal__input {
@@ -112,7 +127,14 @@ body {
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   margin: 10px;
+}
+@media (max-width: 320px) {
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .button {
@@ -125,6 +147,11 @@ body {
 .button:hover, .button:active {
   background-color: #e9ebf2;
 }
+@media (max-width: 320px) {
+  .button {
+    margin-right: 0;
+  }
+}
 
 .filters__add {
   margin-left: auto;
@@ -133,6 +160,12 @@ body {
 }
 .filters__add:hover {
   background-color: rgba(169, 198, 225, 0.6);
+}
+@media (max-width: 430px) {
+  .filters__add {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
 
 .selected {
@@ -149,7 +182,6 @@ body {
   font-size: 16px;
   border-radius: 10px;
   padding: 10px;
-  overflow: hidden;
   background-color: #d5e8f2;
   border: 1px solid #d5e8f2;
   margin-bottom: 15px;
@@ -163,6 +195,9 @@ body {
 
 .task-title {
   flex-wrap: wrap;
+  white-space: pre-wrap;
+  width: 90%;
+  overflow: clip;
 }
 
 .checkbox {
@@ -174,6 +209,7 @@ body {
 .delete-button {
   margin-left: auto;
   height: 30px;
+  margin-right: 0;
 }
 
 .description {
@@ -187,4 +223,5 @@ body {
 .description__content {
   flex-wrap: wrap;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
