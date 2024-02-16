@@ -67,6 +67,8 @@ function addTask(title, description) {
   });
 
   taskList.appendChild(li);
+
+  filter();
 }
 
 // вешаем слушателя на кнопку "Добавить" в модальном окне, кот. добавляет задачу и  скрывает модальное окно
@@ -83,3 +85,71 @@ addButton.addEventListener("click", function () {
     document.querySelector("#task-description").value = "";
   }
 });
+
+// вешаем обработчики на кнопки, кот. фильтруют задачи
+const allButton = document.querySelector(".filters__all");
+const activeButton = document.querySelector(".filters__active");
+const completedButton = document.querySelector(".filters__completed");
+
+let currentFilter = "all";
+
+allButton.addEventListener("click", function () {
+  currentFilter = "all";
+
+  allButton.classList.add("selected");
+  if (activeButton.classList.contains("selected")) {
+    activeButton.classList.remove("selected");
+  }
+  if (completedButton.classList.contains("selected")) {
+    completedButton.classList.remove("selected");
+  }
+
+  filter();
+});
+
+activeButton.addEventListener("click", function () {
+  currentFilter = "active";
+
+  activeButton.classList.add("selected");
+  if (allButton.classList.contains("selected")) {
+    allButton.classList.remove("selected");
+  }
+  if (completedButton.classList.contains("selected")) {
+    completedButton.classList.remove("selected");
+  }
+
+  filter();
+});
+
+completedButton.addEventListener("click", function () {
+  currentFilter = "completed";
+
+  completedButton.classList.add("selected");
+  if (allButton.classList.contains("selected")) {
+    allButton.classList.remove("selected");
+  }
+  if (activeButton.classList.contains("selected")) {
+    activeButton.classList.remove("selected");
+  }
+
+  filter();
+});
+
+// функция фильтрации задач
+function filter() {
+  const tasks = document.querySelectorAll(".task-list__item");
+  tasks.forEach(function (task) {
+    const checkbox = task.querySelector(".checkbox");
+    const isCompleted = checkbox.checked;
+
+    if (currentFilter === "all") {
+      task.style.display = "block";
+    } else if (currentFilter === "active" && !isCompleted) {
+      task.style.display = "block";
+    } else if (currentFilter === "completed" && isCompleted) {
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
+    }
+  });
+}

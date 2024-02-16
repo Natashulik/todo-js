@@ -142,7 +142,8 @@ body {
   border: 1px solid $color-border;
   margin-right: 10px;
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: $color-hover;
   }
 }
@@ -155,6 +156,10 @@ body {
   &:hover {
     background-color: $color-addhover;
   }
+}
+
+.selected {
+  background-color: $color-add;
 }
 
 .task-list {
