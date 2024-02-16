@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-list</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Список задач</h1>
+
+      <!-- Modal start -->
+      <div id="modal" class="modal">
+        <div class="modal__content">
+          <button class="close">✖</button>
+          <h2 class="modal__title">Новая задача</h2>
+          <input
+            type="text"
+            id="task-title"
+            class="modal__input"
+            placeholder="Введите название"
+            required
+          />
+          <textarea
+            id="task-description"
+            class="modal__textarea"
+            placeholder="Введите описание"
+          ></textarea>
+          <button id="add-task" class="modal-button button">Добавить</button>
+        </div>
+      </div>
+      <!-- Modal end  -->
+
+      <div class="filters">
+        <button class="filters__all button">Все задачи</button>
+        <button class="filters__active button">Активные</button>
+        <button class="filters__completed button">Выполненные</button>
+        <button id="open-modal" class="filters__add button">
+          + Добавить задачу
+        </button>
+      </div>
+
+      <ul class="task-list" id="task-list"></ul>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
